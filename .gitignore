@@ -1,4 +1,6 @@
 bits
-bits.c
 .scratch.md
 test.py
+.test*
+.main*
+test*

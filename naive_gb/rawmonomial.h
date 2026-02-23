@@ -12,11 +12,9 @@
 #define FAST_ASSERT(cond) assert(cont)
 #endif
 
-/*
 #ifndef NUM_VARS
 #define NUM_VARS 1
 #endif
-*/
 
 #if defined(__SIZEOF_INT128__)
 typedef unsigned __int128 degree_t;
@@ -107,7 +105,7 @@ static inline unsigned __int128 monomial_get_degree(Monomial m, int var_idx) {
 
 static inline Monomial monomial_set_degree(Monomial m, int var_idx,
                                            uint64_t degree) {
-  uint64_t max_cap = (uint64_t)(((uint512)1 << DATA_BITS) - 1);
+  uint64_t max_cap = ((uint64_t)1 << DATA_BITS) - 1;
 
   FAST_ASSERT(degree <= max_cap &&
               "Panic: Degree exceeds container size for this variable count!");
@@ -263,12 +261,6 @@ static inline Monomial monomial_lcm(Monomial a, Monomial b) {
     lcm |= (max_deg << (i * BITS_PER_VAR));
   }
   return lcm;
-}
-
-static inline int monomials_are_coprime(Monomial a, Monomial b) {
-  Monomial lcm = monomial_lcm(a, b);
-  Monomial prod = a + b;
-  return (lcm == prod);
 }
 
 #endif
