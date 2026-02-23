@@ -3,4 +3,4 @@ bits
 test.py
 .test*
 .main*
-test*
+test
